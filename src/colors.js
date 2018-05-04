@@ -1,7 +1,7 @@
 const colors = {
     button: {
         active: '#fff',
-        inactive: '#ccc'
+        inactive: '#aaa'
     },
     background: '#fff'
 }
