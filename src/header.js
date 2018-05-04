@@ -20,6 +20,7 @@ class Header extends React.Component {
                 }}>
                     <HeaderButton
                         icon_name='home'
+                        active
                     />
                     <HeaderButton
                         icon_name='at'
@@ -48,9 +49,6 @@ class HeaderButton extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            active: false
-        }
     }
 
     render() {
@@ -61,7 +59,7 @@ class HeaderButton extends React.Component {
                     fontSize: '20px',
                     margin: 0,
                     padding: '10px 5px',
-                    color: this.state.active ? colors.button.active : colors.button.inactive
+                    color: this.props.active ? colors.button.active : colors.button.inactive
                 }}
             />
         );
