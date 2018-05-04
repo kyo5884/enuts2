@@ -1,1 +1,3 @@
-new version of [enuts](https://github.com/kyo5884/enuts/): pnut.io desktop client app for Windows/macOS/Linux
+# enuts2
+
+pnut.io desktop client app for Windows/macOS/Linux
