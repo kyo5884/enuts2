@@ -1,3 +1,3 @@
 # enuts2
 
-pnut.io desktop client app for Windows/macOS/Linux
+[pnut.io](http://pnut.io/) desktop client app for Windows/macOS/Linux
