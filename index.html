@@ -1,0 +1,17 @@
+
+<div id="root-dom"></div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<style>
+    body {
+        margin: 0;
+    }
+</style>
+<script>
+    require("babel-register")({plugins: "transform-react-jsx"});
+    const React = require("react");
+    const ReactDOM = require("react-dom");
+    const App = require("./src/app.js");
+
+    const rootDOM = document.getElementById("root-dom");
+    ReactDOM.render(React.createElement(App), rootDOM);
+</script>
