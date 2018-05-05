@@ -56,9 +56,9 @@ class HeaderButton extends React.Component {
             <FontAwesome
                 name={this.props.icon_name} 
                 style={{
-                    fontSize: '20px',
+                    fontSize: '18px',
                     margin: 0,
-                    padding: '10px 5px',
+                    padding: '5px',
                     color: this.props.active ? colors.button.active : colors.button.inactive
                 }}
             />
