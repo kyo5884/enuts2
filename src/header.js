@@ -51,14 +51,16 @@ class Header extends React.Component {
                         selectedTab={this.props.selectedTab}
                     />
                 </div>
-                <div style={{marginRight: '5px'}} onClick={() => console.log('New Post')}>
+                <div style={{marginRight: '5px'}} onClick={() => this.props.toggleComposeScreen()}>
                     <FontAwesome
                         name={'pencil'} 
                         style={{
                             fontSize: '18px',
                             margin: 0,
                             padding: '5px',
-                            color: colors.button.inactive
+                            color: this.props.composeScreenOpened ? colors.header.button.active : colors.header.button.inactive,
+                            transform: this.props.composeScreenOpened ? 'rotate(-30deg)' : 'rotate(0)',
+                            transition: 'color 500ms cubic-bezier(0.19, 1, 0.22, 1), transform 500ms cubic-bezier(0.19, 1, 0.22, 1)'
                         }}
                     />
                 </div>
@@ -82,7 +84,8 @@ class HeaderButton extends React.Component {
                         fontSize: '18px',
                         margin: 0,
                         padding: '5px',
-                        color: this.props.selectedTab == this.props.tab_name ? colors.button.active : colors.button.inactive
+                        color: this.props.selectedTab == this.props.tab_name ? colors.header.button.active : colors.header.button.inactive,
+                        transition: 'color 500ms cubic-bezier(0.19, 1, 0.22, 1)'
                     }}
                 />
             </a>

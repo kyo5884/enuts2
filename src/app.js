@@ -1,17 +1,28 @@
 const React = require('react');
 const Header = require('./header.js');
+const ComposeScreen = require('./composeScreen.js')
 const colors = require('./colors.js');
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedTab: 'Home'
+            selectedTab: 'Home',
+            composeScreenOpened: false
         }
     }
 
     selectTab(name) {
         this.setState({selectedTab: name});
+    }
+
+    toggleComposeScreen() {
+        if (this.state.composeScreenOpened) {
+            this.setState({composeScreenOpened: false});
+        } else {
+            this.setState({composeScreenOpened: true});
+            this.refs.composeScreen.focusTextArea();
+        }
     }
 
     render() {
@@ -20,24 +31,36 @@ class App extends React.Component {
                 <Header
                     selectTab={(tabName) => this.selectTab(tabName)} 
                     selectedTab={this.state.selectedTab}
+                    toggleComposeScreen={() => this.toggleComposeScreen()}
+                    composeScreenOpened={this.state.composeScreenOpened}
                 />
-                <Tab>
-                    <TabPanel selected={this.state.selectedTab == 'Home'}>
-                        Home
-                    </TabPanel>
-                    <TabPanel selected={this.state.selectedTab == 'Mentions'}>
-                        Mentions
-                    </TabPanel>
-                    <TabPanel selected={this.state.selectedTab == 'Interactions'}>
-                        Interactions
-                    </TabPanel>
-                    <TabPanel selected={this.state.selectedTab == 'Global'}>
-                        Global
-                    </TabPanel>
-                    <TabPanel selected={this.state.selectedTab == 'User'}>
-                        User
-                    </TabPanel>
-                </Tab>
+                <ComposeScreen
+                    ref='composeScreen'
+                    opened={this.state.composeScreenOpened}
+                    toggleComposeScreen={() => this.toggleComposeScreen()}
+                />
+                <div style={{
+                    height: 'calc(100% - 40px)',
+                    overflow: 'scroll'
+                }}>
+                    <Tab>
+                        <TabPanel selected={this.state.selectedTab == 'Home'}>
+                            Home
+                        </TabPanel>
+                        <TabPanel selected={this.state.selectedTab == 'Mentions'}>
+                            Mentions
+                        </TabPanel>
+                        <TabPanel selected={this.state.selectedTab == 'Interactions'}>
+                            Interactions
+                        </TabPanel>
+                        <TabPanel selected={this.state.selectedTab == 'Global'}>
+                            Global
+                        </TabPanel>
+                        <TabPanel selected={this.state.selectedTab == 'User'}>
+                            User
+                        </TabPanel>
+                    </Tab>
+                </div>
             </div>
         );
     }
@@ -51,12 +74,8 @@ class Tab extends React.Component {
     render() {
         return(
             <div style={{
-                position: 'absolute',
-                top: 40,
-                bottom: 0,
-                left: 0,
-                right: 0,
-                overflow: scroll,
+                height: '1000px',
+                width: '100%',
                 backgroundColor: colors.background
             }}>
                 {this.props.children}
