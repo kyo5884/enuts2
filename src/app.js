@@ -18,16 +18,30 @@ class App extends React.Component {
 
     toggleComposeScreen() {
         if (this.state.composeScreenOpened) {
-            this.setState({composeScreenOpened: false});
+            this.closeComposeScreen();
         } else {
-            this.setState({composeScreenOpened: true});
-            this.refs.composeScreen.focusTextArea();
+            this.openComposeScreen();
         }
+    }
+
+    closeComposeScreen() {
+        this.setState({composeScreenOpened: false});
+    }
+
+    openComposeScreen() {
+        this.setState({composeScreenOpened: true});
+        this.refs.composeScreen.focusTextArea();
     }
 
     render() {
         return (
-            <div>
+            <div
+                onDragOver={(event) => {
+                    event.dataTransfer.dropEffect = 'none';
+                    event.preventDefault();
+                }}
+                onDrop={(event) => {event.preventDefault()}}
+            >
                 <Header
                     selectTab={(tabName) => this.selectTab(tabName)} 
                     selectedTab={this.state.selectedTab}
@@ -37,7 +51,7 @@ class App extends React.Component {
                 <ComposeScreen
                     ref='composeScreen'
                     opened={this.state.composeScreenOpened}
-                    toggleComposeScreen={() => this.toggleComposeScreen()}
+                    closeComposeScreen={() => this.closeComposeScreen()}
                 />
                 <div style={{
                     height: 'calc(100% - 40px)',

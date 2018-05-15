@@ -7,7 +7,9 @@ const colors = {
     },
     background: '#fff',
     composeScreen: {
+        text: '#000',
         background: '#eee',
+        dragBackground: '#ddd',
         button: {
             text: '#000',
             hover: '#ccc'
