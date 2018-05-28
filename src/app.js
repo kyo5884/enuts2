@@ -1,6 +1,6 @@
 const React = require('react');
 const Header = require('./header.js');
-const ComposeScreen = require('./composeScreen.js')
+const ComposeScreen = require('./composeScreen.js');
 const colors = require('./colors.js');
 
 class App extends React.Component {
