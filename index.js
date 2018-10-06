@@ -10,7 +10,8 @@ app.on('ready', () => {
         titleBarStyle: 'hiddenInset',
         minWidth: 250,
         vibrancy: 'ultra-dark',
-        transparent: true
+        transparent: true,
+        webPreferences: { experimentalFeatures: true }
     });
     mainWindow.loadURL(ROOT_PATH + '/index.html');
 });

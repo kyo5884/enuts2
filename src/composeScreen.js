@@ -14,7 +14,26 @@ class ComposeScreen extends React.Component {
             value: '',
             markdownValue: '',
             attachment: [],
-            dragOver: false
+            dragOver: false,
+            animation: null,
+            animationDuration: 250
+        }        
+    }
+
+    componentWillReceiveProps(props) {
+        if (props.opened) {
+            this.setState({ animation: 'open' });
+            setTimeout(() => {
+                this.setState({ animation: null });
+            }, this.state.animationDuration);
+        } else if (props.opened == false) {
+            this.setState({ animation: 'willclose' });
+            setTimeout(() => {
+                this.setState({ animation: 'closing' });
+            }, 1);
+            setTimeout(() => {
+                this.setState({ animation: null });
+            }, this.state.animationDuration);
         }
     }
 
@@ -55,16 +74,16 @@ class ComposeScreen extends React.Component {
         return (
             <div 
                 style={{
-                    height: this.props.opened ? 103 : 0,
+                    height: this.state.animation == 'open' ? 103 : this.props.opened ? 'auto' : this.state.animation == 'willclose' ? 103 : this.state.animation == 'closing' ? 0 : 0,
                     overflow: 'hidden',
                     color: colors.composeScreen.text,
                     borderBottom: '1px solid ' + colors.stream.separator,
                     backgroundColor: this.state.dragOver ? colors.composeScreen.dragBackground : colors.composeScreen.background,
-                    transition: 'height 250ms cubic-bezier(0.19, 1, 0.22, 1)'
+                    transition: `height ${this.state.animationDuration}ms cubic-bezier(0.19, 1, 0.22, 1)`
                 }}
                 onDragEnter={() => {
                 }}
-                onDragLeave={() => {
+                onDragLeave={(event) => {
                     event.preventDefault();
                     event.stopPropagation();
                     this.setState({dragOver: false})
@@ -108,7 +127,7 @@ class ComposeScreen extends React.Component {
                                 borderRadius: '100%'
                             }}
                         />
-                        <textarea
+                        <TextareaAutosize
                             ref='textarea'
                             style={{
                                 flex: 1,
@@ -117,6 +136,7 @@ class ComposeScreen extends React.Component {
                                 padding: 0,
                                 resize: 'none',
                                 outline: 0,
+                                color: colors.composeScreen.text,
                                 backgroundColor: 'transparent'
                             }}
                             placeholder='Say something...'
@@ -143,8 +163,8 @@ class ComposeScreen extends React.Component {
                                     key={key}
                                     style={{
                                         position: 'relative',
-                                        opacity: state == 'entered' || state == 'entering' ? 1 : 0,
-                                        transition: 'opacity 500ms linear'
+                                        // opacity: state == 'entered' || state == 'entering' ? 1 : 0,
+                                        // transition: 'opacity 500ms linear'
                                     }}
                                 >
                                     <div

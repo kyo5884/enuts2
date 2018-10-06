@@ -41,8 +41,8 @@ const dark = {
     foreground: '#fff',
     composeScreen: {
         text: '#fff',
-        background: '#444',
-        dragBackground: '#ddd',
+        background: 'rgba(255, 255, 255, 0.1)',
+        dragBackground: 'rgba(255, 255, 255, 0.25)',
         button: {
             text: '#fff',
             hover: '#555'
