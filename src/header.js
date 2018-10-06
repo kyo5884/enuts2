@@ -16,6 +16,7 @@ class Header extends React.Component {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                background: colors.header.background,
                 WebkitAppRegion: 'drag'
             }}>
                 <div style={{width: '56px', height: '100%'}} />

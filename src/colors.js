@@ -3,13 +3,14 @@ const light = {
         button: {
             active: '#fff',
             inactive: '#aaa'
-        }
+        },
+        background: 'transparent'
     },
     background: '#fff',
     foreground: '#000',
     composeScreen: {
         text: '#000',
-        background: '#eee',
+        background: 'rgba(255, 255, 255, 0.9)',
         dragBackground: '#ddd',
         button: {
             text: '#000',
@@ -35,17 +36,18 @@ const dark = {
         button: {
             active: '#fff',
             inactive: '#aaa'
-        }
+        },
+        background: 'linear-gradient(rgba(60, 60, 60, 0.25), rgba(0, 0, 0, 0.25))'
     },
     background: '#222',
     foreground: '#fff',
     composeScreen: {
         text: '#fff',
-        background: 'rgba(255, 255, 255, 0.1)',
+        background: 'transparent',
         dragBackground: 'rgba(255, 255, 255, 0.25)',
         button: {
             text: '#fff',
-            hover: '#555'
+            hover: 'rgba(255, 255, 255, 0.2)'
         },
         remainText: '#ccc'
     },

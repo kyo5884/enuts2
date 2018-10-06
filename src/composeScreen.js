@@ -74,7 +74,7 @@ class ComposeScreen extends React.Component {
         return (
             <div 
                 style={{
-                    height: this.state.animation == 'open' ? 103 : this.props.opened ? 'auto' : this.state.animation == 'willclose' ? 103 : this.state.animation == 'closing' ? 0 : 0,
+                    height: this.state.animation == 'open' ? 98 : this.props.opened ? 'auto' : this.state.animation == 'willclose' ? 98 : this.state.animation == 'closing' ? 0 : 0,
                     overflow: 'hidden',
                     color: colors.composeScreen.text,
                     borderBottom: '1px solid ' + colors.stream.separator,
@@ -115,7 +115,7 @@ class ComposeScreen extends React.Component {
                     <div style={{
                         display: 'flex',
                         flex: 1,
-                        padding: 4,
+                        paddingTop: 4,
                         flexDirection: 'row'
                     }}>
                         <img
@@ -123,7 +123,7 @@ class ComposeScreen extends React.Component {
                             style={{
                                 width: 48,
                                 height: 48,
-                                marginRight: 12,
+                                marginRight: 8,
                                 borderRadius: '100%'
                             }}
                         />
