@@ -17,7 +17,15 @@ const colors = {
         remainText: '#555'
     },
     stream: {
-        separatorColor: '#eee'
+        fontSize: '10pt',
+        separator: '#eee',
+        text: '#000',
+        link: '#999',
+        name: {
+            primary: '#000',
+            secondary: '#999'
+        },
+        time: '#999'
     }
 }
 

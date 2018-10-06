@@ -58,7 +58,7 @@ class ComposeScreen extends React.Component {
                     height: this.props.opened ? 103 : 0,
                     overflow: 'hidden',
                     color: colors.composeScreen.text,
-                    borderBottom: '1px solid ' + colors.stream.separatorColor,
+                    borderBottom: '1px solid ' + colors.stream.separator,
                     backgroundColor: this.state.dragOver ? colors.composeScreen.dragBackground : colors.composeScreen.background,
                     transition: 'height 250ms cubic-bezier(0.19, 1, 0.22, 1)'
                 }}

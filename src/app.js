@@ -1,7 +1,10 @@
 const React = require('react');
 const Header = require('./header.js');
 const ComposeScreen = require('./composeScreen.js');
+const Stream = require('./stream.js');
 const colors = require('./colors.js');
+
+const API_ROOT = 'https://api.pnut.io/v0';
 
 class App extends React.Component {
     constructor(props) {
@@ -36,6 +39,9 @@ class App extends React.Component {
     render() {
         return (
             <div
+                style={{
+                    fontFamily: '-apple-system, sans-serif'
+                }}
                 onDragOver={(event) => {
                     event.dataTransfer.dropEffect = 'none';
                     event.preventDefault();
@@ -67,7 +73,7 @@ class App extends React.Component {
                             Interactions
                         </TabPanel>
                         <TabPanel selected={this.state.selectedTab == 'Global'}>
-                            Global
+                            <Stream url={API_ROOT + '/posts/streams/global'} />
                         </TabPanel>
                         <TabPanel selected={this.state.selectedTab == 'User'}>
                             User
