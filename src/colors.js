@@ -1,4 +1,4 @@
-const colors = {
+const light = {
     header: {
         button: {
             active: '#fff',
@@ -6,6 +6,7 @@ const colors = {
         }
     },
     background: '#fff',
+    foreground: '#000',
     composeScreen: {
         text: '#000',
         background: '#eee',
@@ -28,5 +29,39 @@ const colors = {
         time: '#999'
     }
 }
+
+const dark = {
+    header: {
+        button: {
+            active: '#fff',
+            inactive: '#aaa'
+        }
+    },
+    background: '#222',
+    foreground: '#fff',
+    composeScreen: {
+        text: '#fff',
+        background: '#444',
+        dragBackground: '#ddd',
+        button: {
+            text: '#fff',
+            hover: '#555'
+        },
+        remainText: '#ccc'
+    },
+    stream: {
+        fontSize: '10pt',
+        separator: '#333',
+        text: '#fff',
+        link: '#999',
+        name: {
+            primary: '#fff',
+            secondary: '#777'
+        },
+        time: '#777'
+    }
+}
+
+const colors = dark;
 
 module.exports = colors;

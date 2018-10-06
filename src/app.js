@@ -40,7 +40,8 @@ class App extends React.Component {
         return (
             <div
                 style={{
-                    fontFamily: '-apple-system, sans-serif'
+                    fontFamily: '-apple-system, sans-serif',
+                    color: colors.foreground
                 }}
                 onDragOver={(event) => {
                     event.dataTransfer.dropEffect = 'none';

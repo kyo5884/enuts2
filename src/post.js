@@ -10,8 +10,9 @@ class Post extends React.Component {
 
     render() {
         return (
-            <div style={{
+            this.props.data.is_deleted ? null : <div style={{
                 fontSize: colors.stream.fontSize,
+                color: colors.stream.text,
                 borderBottom: '1px solid ' + colors.stream.separator,
                 padding: 8,
                 display: 'flex',
