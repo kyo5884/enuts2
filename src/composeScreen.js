@@ -19,7 +19,7 @@ class ComposeScreen extends React.Component {
     }
 
     focusTextArea() {
-        ReactDOM.findDOMNode(this._refs.refs.textarea).focus();
+        ReactDOM.findDOMNode(this.refs.textarea).focus();
     }
 
     close() {
@@ -53,163 +53,155 @@ class ComposeScreen extends React.Component {
 
     render() {
         return (
-            <Transition
-                in={this.props.opened}
-                timeout={250}
-                ref={(ref) => this._refs = ref}
-            >{(state) => (
-                <div 
-                    style={{
-                        height: state == 'entered' ? 'auto' : state == 'entering' ? 103 : state == 'exiting' ? 103 : 0,
-                        overflow: 'hidden',
-                        color: colors.composeScreen.text,
-                        borderBottom: '1px solid ' + colors.stream.separatorColor,
-                        backgroundColor: this.state.dragOver ? colors.composeScreen.dragBackground : colors.composeScreen.background,
-                        transition: 'height 250ms cubic-bezier(0.19, 1, 0.22, 1)'
-                    }}
-                    onDragEnter={() => {
-                    }}
-                    onDragLeave={() => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        console.log('leave')
-                        this.setState({dragOver: false})
-                    }}
-                    onDragOver={(event) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        console.log('over')
-                        this.setState({dragOver: true})
-                        event.dataTransfer.dropEffect = 'copy';
-                    }}
-                    onDrop={(event) => {
-                        event.preventDefault();
-                        event.stopPropagation();
+            <div 
+                style={{
+                    height: this.props.opened ? 103 : 0,
+                    overflow: 'hidden',
+                    color: colors.composeScreen.text,
+                    borderBottom: '1px solid ' + colors.stream.separatorColor,
+                    backgroundColor: this.state.dragOver ? colors.composeScreen.dragBackground : colors.composeScreen.background,
+                    transition: 'height 250ms cubic-bezier(0.19, 1, 0.22, 1)'
+                }}
+                onDragEnter={() => {
+                }}
+                onDragLeave={() => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    this.setState({dragOver: false})
+                }}
+                onDragOver={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    this.setState({dragOver: true})
+                    event.dataTransfer.dropEffect = 'copy';
+                }}
+                onDrop={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
 
-                        this.setState({dragOver: false});
-                        
-                        var newAttachment = this.state.attachment;
-                        Array.from(event.dataTransfer.files).forEach(file => {
-                            if (file.type.match(/image/)) {
-                                newAttachment.push(file.path);
-                            }
-                        });
-                        this.setState({attachment: newAttachment});
-                    }}
-                >
+                    this.setState({dragOver: false});
+                    
+                    var newAttachment = this.state.attachment;
+                    Array.from(event.dataTransfer.files).forEach(file => {
+                        if (file.type.match(/image/)) {
+                            newAttachment.push(file.path);
+                        }
+                    });
+                    this.setState({attachment: newAttachment});
+                }}
+            >
+                <div style={{
+                    margin: 8
+                }}>
                     <div style={{
-                        margin: 8
+                        display: 'flex',
+                        flex: 1,
+                        padding: 4,
+                        flexDirection: 'row'
                     }}>
-                        <div style={{
-                            display: 'flex',
-                            flex: 1,
-                            padding: 4,
-                            flexDirection: 'row'
-                        }}>
-                            <img
-                                src='http://dummyimage.com/48x48'
-                                style={{
-                                    width: 48,
-                                    height: 48,
-                                    marginRight: 12,
-                                    borderRadius: '100%'
-                                }}
-                            />
-                            <TextareaAutosize
-                                ref='textarea'
-                                style={{
-                                    flex: 1,
-                                    fontSize: '10pt',
-                                    border: 'none',
-                                    padding: 0,
-                                    resize: 'none',
-                                    outline: 0,
-                                    backgroundColor: 'transparent'
-                                }}
-                                placeholder='Say something...'
-                                onKeyDown={(event) => {
-                                    if (event.keyCode == 27) { // ESC key
-                                        this.close();
-                                    }
-                                }}
-                                onChange={(event) => this.onChangeText(event)}
-                                rows={2}
-                            />
-                        </div>
-                        {this.state.attachment.length ? <div style={{
-                            display: 'flex',
-                            flex: 1,
-                            margin: '8px 0 4px 6px',
-                            flexDirection: 'row',
-                            justifyContent: '',
-                            overflowY: 'scroll'
-                        }}>
-                            {this.state.attachment.map((item, key) => {
-                                return (
-                                    <div 
-                                        key={key}
+                        <img
+                            src='http://dummyimage.com/48x48'
+                            style={{
+                                width: 48,
+                                height: 48,
+                                marginRight: 12,
+                                borderRadius: '100%'
+                            }}
+                        />
+                        <textarea
+                            ref='textarea'
+                            style={{
+                                flex: 1,
+                                fontSize: '10pt',
+                                border: 'none',
+                                padding: 0,
+                                resize: 'none',
+                                outline: 0,
+                                backgroundColor: 'transparent'
+                            }}
+                            placeholder='Say something...'
+                            onKeyDown={(event) => {
+                                if (event.keyCode == 27) { // ESC key
+                                    this.close();
+                                }
+                            }}
+                            onChange={(event) => this.onChangeText(event)}
+                            rows={2}
+                        />
+                    </div>
+                    {this.state.attachment.length ? <div style={{
+                        display: 'flex',
+                        flex: 1,
+                        margin: '8px 0 4px 6px',
+                        flexDirection: 'row',
+                        justifyContent: '',
+                        overflowY: 'scroll'
+                    }}>
+                        {this.state.attachment.map((item, key) => {
+                            return (
+                                <div 
+                                    key={key}
+                                    style={{
+                                        position: 'relative',
+                                        opacity: state == 'entered' || state == 'entering' ? 1 : 0,
+                                        transition: 'opacity 500ms linear'
+                                    }}
+                                >
+                                    <div
                                         style={{
-                                            position: 'relative',
-                                            opacity: state == 'entered' || state == 'entering' ? 1 : 0,
-                                            transition: 'opacity 500ms linear'
+                                            height: 48,
+                                            width: 48,
+                                            margin: '8px 16px 0 0',
+                                            backgroundImage: 'url("' + item + '")',
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center'
+                                        }}
+                                    />
+                                    <div
+                                        style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            right: 8,
+                                            cursor: 'pointer',
+                                            backgroundColor: colors.composeScreen.background,
+                                            border: '1px solid ' + colors.composeScreen.background,
+                                            borderRadius: '100%'
+                                        }}
+                                        onClick={() => {
+                                            let newAttachment = this.state.attachment;
+                                            newAttachment.splice(key, 1);
+                                            this.setState({attachment: newAttachment})
                                         }}
                                     >
-                                        <div
-                                            style={{
-                                                height: 48,
-                                                width: 48,
-                                                margin: '8px 16px 0 0',
-                                                backgroundImage: 'url("' + item + '")',
-                                                backgroundSize: 'cover',
-                                                backgroundPosition: 'center'
-                                            }}
-                                        />
-                                        <div
-                                            style={{
-                                                position: 'absolute',
-                                                top: 0,
-                                                right: 8,
-                                                cursor: 'pointer',
-                                                backgroundColor: colors.composeScreen.background,
-                                                border: '1px solid ' + colors.composeScreen.background,
-                                                borderRadius: '100%'
-                                            }}
-                                            onClick={() => {
-                                                let newAttachment = this.state.attachment;
-                                                newAttachment.splice(key, 1);
-                                                this.setState({attachment: newAttachment})
-                                            }}
-                                        >
-                                            <FontAwesome name='times-circle'/>
-                                        </div>
+                                        <FontAwesome name='times-circle'/>
                                     </div>
-                                );
-                            })}
-                        </div> : null}
+                                </div>
+                            );
+                        })}
+                    </div> : null}
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'baseline',
+                        fontSize: '12px'
+                    }}>
                         <div style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: 'baseline',
-                            fontSize: '12px'
+                            padding: 8,
+                            color: colors.composeScreen.remainText
                         }}>
-                            <div style={{
-                                padding: 8,
-                                color: colors.composeScreen.remainText
-                            }}>
-                                {256 - this.state.markdownValue.length}
-                            </div>
-                            <div style={{
-                                color: colors.composeScreen.button.text
-                            }}>
-                                <ComposeScreenButton icon_name={'photo'} text={'+'} onClick={() => this.addAttachment()} />
-                                <ComposeScreenButton icon_name={'times'} text={'Cancel'} onClick={() => this.close()}/>
-                                <ComposeScreenButton icon_name={'paper-plane'} text={'Post'} />
-                            </div>
+                            {256 - this.state.markdownValue.length}
+                        </div>
+                        <div style={{
+                            color: colors.composeScreen.button.text
+                        }}>
+                            <ComposeScreenButton icon_name={'photo'} text={'+'} onClick={() => this.addAttachment()} />
+                            <ComposeScreenButton icon_name={'times'} text={'Cancel'} onClick={() => this.close()}/>
+                            <ComposeScreenButton icon_name={'paper-plane'} text={'Post'} />
                         </div>
                     </div>
                 </div>
-            )}</Transition>
+            </div>
         );
     }
 }

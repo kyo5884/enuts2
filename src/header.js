@@ -50,6 +50,12 @@ class Header extends React.Component {
                         selectTab={this.props.selectTab}
                         selectedTab={this.props.selectedTab}
                     />
+                    <HeaderButton
+                        icon_name='search'
+                        tab_name='Search'
+                        selectTab={this.props.selectTab}
+                        selectedTab={this.props.selectedTab}
+                    />
                 </div>
                 <div style={{marginRight: '5px'}} onClick={() => this.props.toggleComposeScreen()}>
                     <FontAwesome
