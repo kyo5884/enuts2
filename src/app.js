@@ -55,7 +55,6 @@ class App extends React.Component {
                 />
                 <div style={{
                     height: 'calc(100% - 40px)',
-                    overflow: 'scroll'
                 }}>
                     <Tab>
                         <TabPanel selected={this.state.selectedTab == 'Home'}>
@@ -73,6 +72,9 @@ class App extends React.Component {
                         <TabPanel selected={this.state.selectedTab == 'User'}>
                             User
                         </TabPanel>
+                        <TabPanel selected={this.state.selectedTab == 'Search'}>
+                            Search
+                        </TabPanel>
                     </Tab>
                 </div>
             </div>
@@ -88,9 +90,6 @@ class Tab extends React.Component {
     render() {
         return(
             <div style={{
-                height: '1000px',
-                width: '100%',
-                backgroundColor: colors.background
             }}>
                 {this.props.children}
             </div>
@@ -101,7 +100,15 @@ class Tab extends React.Component {
 class TabPanel extends React.Component {
     render() {
         return(
-            <div>{this.props.selected ? this.props.children : null}</div>
+            <div style={{
+                height: '100%',
+                width: '100%',
+                overflow: 'scroll',
+                backgroundColor: colors.background,
+                display: this.props.selected ? 'block' : 'none'
+            }}>
+                {this.props.children}
+            </div>
         );
     }
 }
