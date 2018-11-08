@@ -39,7 +39,7 @@ const dark = {
         },
         background: 'linear-gradient(rgba(60, 60, 60, 0.25), rgba(0, 0, 0, 0.25))'
     },
-    background: '#222',
+    background: '#333',
     foreground: '#fff',
     composeScreen: {
         text: '#fff',
@@ -64,6 +64,6 @@ const dark = {
     }
 }
 
-const colors = dark;
+const colors = light;
 
 module.exports = colors;
