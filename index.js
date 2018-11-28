@@ -5,7 +5,6 @@ const store = new Store();
 
 const ROOT_PATH = 'file://' + __dirname;
 
-
 app.on('ready', () => {
 
     if (store.get('token') == null) {
