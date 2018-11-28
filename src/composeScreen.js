@@ -2,6 +2,9 @@ const colors = require('./colors.js');
 const FontAwesome = require('react-fontawesome');
 const TextareaAutosize = require('react-autosize-textarea').default;
 const Transition = require('react-transition-group/Transition').default;
+const Store = require('electron-store');
+const store = new Store();
+const Constants = require('./constants.js');
 
 const remote = require('electron').remote;
 const dialog = remote.dialog;
@@ -44,6 +47,26 @@ class ComposeScreen extends React.Component {
     close() {
         this.setState({attachment: [], value: '', markdownValue: '', dragOver: false});
         this.props.closeComposeScreen();
+    }
+
+    post() {
+        fetch(Constants.API_ROOT + '/posts', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + store.get('token'),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                text: this.state.value
+            })
+        }).then((response) => {
+            if (response.ok) {
+                this.close();
+            }
+            return response.json();
+        }).then((json) => {
+            console.log('post', json);
+        });
     }
 
     onChangeText(event) {
@@ -216,8 +239,8 @@ class ComposeScreen extends React.Component {
                             color: colors.composeScreen.button.text
                         }}>
                             <ComposeScreenButton icon_name={'photo'} text={'+'} onClick={() => this.addAttachment()} />
-                            <ComposeScreenButton icon_name={'times'} text={'Cancel'} onClick={() => this.close()}/>
-                            <ComposeScreenButton icon_name={'paper-plane'} text={'Post'} />
+                            <ComposeScreenButton icon_name={'times'} text={'Cancel'} onClick={() => this.close()} />
+                            <ComposeScreenButton icon_name={'paper-plane'} text={'Post'} onClick={() => this.post()} />
                         </div>
                     </div>
                 </div>
