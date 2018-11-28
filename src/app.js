@@ -3,8 +3,7 @@ const Header = require('./header.js');
 const ComposeScreen = require('./composeScreen.js');
 const Stream = require('./stream.js');
 const colors = require('./colors.js');
-
-const API_ROOT = 'https://api.pnut.io/v0';
+const Constants = require('./constants.js');
 
 class App extends React.Component {
     constructor(props) {
@@ -65,16 +64,16 @@ class App extends React.Component {
                 }}>
                     <Tab>
                         <TabPanel selected={this.state.selectedTab == 'Home'}>
-                            <Stream url={API_ROOT + '/posts/streams/me'} />
+                            <Stream url={Constants.API_ROOT + '/posts/streams/me'} />
                         </TabPanel>
                         <TabPanel selected={this.state.selectedTab == 'Mentions'}>
-                            <Stream url={API_ROOT + '/users/me/mentions'} />
+                            <Stream url={Constants.API_ROOT + '/users/me/mentions'} />
                         </TabPanel>
                         <TabPanel selected={this.state.selectedTab == 'Interactions'}>
                             Interactions
                         </TabPanel>
                         <TabPanel selected={this.state.selectedTab == 'Global'}>
-                            <Stream url={API_ROOT + '/posts/streams/global'} />
+                            <Stream url={Constants.API_ROOT + '/posts/streams/global'} />
                         </TabPanel>
                         <TabPanel selected={this.state.selectedTab == 'User'}>
                             User
