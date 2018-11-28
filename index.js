@@ -5,6 +5,7 @@ const store = new Store();
 
 const ROOT_PATH = 'file://' + __dirname;
 
+
 app.on('ready', () => {
 
     if (store.get('token') == null) {
@@ -22,7 +23,7 @@ app.on('ready', () => {
             const newURL = listener.redirectURL;
             if (newURL.match("http://kyo5884.tk/enuts/auth_done#access_token=")) {
                 token = newURL.match(/#access_token=(.+)/)[1];
-                store.set("token", token);
+                store.set('token', token);
                 authWindow.close();
                 showMainWindow();
             }
