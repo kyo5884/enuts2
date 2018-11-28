@@ -1,5 +1,7 @@
 const React = require('react');
 const Post = require('./post.js');
+const Store = require('electron-store');
+const store = new Store();
 
 class Stream extends React.Component {
     constructor(props) {
@@ -16,7 +18,8 @@ class Stream extends React.Component {
 
     update() {
         fetch(this.props.url + `?since_id=${this.state.since_id}`, {
-            method: 'GET'
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer ' + store.get('token') }
         }).then(response => {
             return response.json();
         }).then(json => {

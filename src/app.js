@@ -65,10 +65,10 @@ class App extends React.Component {
                 }}>
                     <Tab>
                         <TabPanel selected={this.state.selectedTab == 'Home'}>
-                            Home
+                            <Stream url={API_ROOT + '/posts/streams/me'} />
                         </TabPanel>
                         <TabPanel selected={this.state.selectedTab == 'Mentions'}>
-                            Mentions
+                            <Stream url={API_ROOT + '/users/me/mentions'} />
                         </TabPanel>
                         <TabPanel selected={this.state.selectedTab == 'Interactions'}>
                             Interactions
