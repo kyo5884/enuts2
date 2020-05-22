@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kyo5884",
-  "license": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kyo5884/enuts2"
+  },
   "devDependencies": {
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-register": "^6.26.0",
